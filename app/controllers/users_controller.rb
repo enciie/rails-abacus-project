@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show]
 
   def new
     @user = User.new
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      render 'new'
+      render 'new' #show them the form
     end
   end
 
